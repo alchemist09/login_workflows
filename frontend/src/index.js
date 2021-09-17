@@ -4,9 +4,21 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import { Router, Route, browserHistory } from 'react-router'
+
+import Login from './login'
+import Signup from './signup'
+import Widgets from './widgets'
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Router history={browserHistory}>
+      <Route path="/" component={App}>
+        <Route path="/login" component={Login} />
+        <Route path="/signup" component={Signup} />
+        <Route path="/widgets" component={Widgets} />
+      </Route>
+    </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );
