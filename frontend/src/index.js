@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import configureStore from './store';
+import { createBrowserHistory } from 'history'
 
 // React Router
 import { Router, Route } from 'react-router'
@@ -17,11 +18,12 @@ import Signup from './signup'
 import Widgets from './widgets'
 
 const store = configureStore()
+const browserHistory = createBrowserHistory()
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <Router>
+      <Router history={browserHistory}>
         <Route path="/" component={App}>
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
