@@ -20,8 +20,6 @@ import Widgets from './widgets'
 const store = configureStore()
 const browserHistory = createBrowserHistory()
 
-const document = {}
-if(typeof window === 'undefined') {
   ReactDOM.render(
     <React.StrictMode>
       <Provider store={store}>
@@ -36,7 +34,6 @@ if(typeof window === 'undefined') {
     </React.StrictMode>,
     document.getElementById('root')
   );
-}
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
