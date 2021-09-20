@@ -20,20 +20,23 @@ import Widgets from './widgets'
 const store = configureStore()
 const browserHistory = createBrowserHistory()
 
-ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <Router history={browserHistory}>
-        <Route path="/" component={App}>
-          <Route path="/login" component={Login} />
-          <Route path="/signup" component={Signup} />
-          <Route path="/widgets" component={Widgets} />
-        </Route>
-      </Router>
-    </Provider>
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+const document = {}
+if(typeof window === 'undefined') {
+  ReactDOM.render(
+    <React.StrictMode>
+      <Provider store={store}>
+        <Router history={browserHistory}>
+          <Route path="/" component={App}>
+            <Route path="/login" component={Login} />
+            <Route path="/signup" component={Signup} />
+            <Route path="/widgets" component={Widgets} />
+          </Route>
+        </Router>
+      </Provider>
+    </React.StrictMode>,
+    document.getElementById('root')
+  );
+}
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
