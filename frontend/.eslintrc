@@ -6,9 +6,14 @@
   "plugins": [
     "react"
   ],
+  "env": {
+    "browser": true,
+    "node": true
+  },
   "rules": {
-    "react/jsx-uses-react": "error",
-    "react/jsx-uses-vars": "error"
+    "react/jsx-uses-react": "off",
+    "react/jsx-uses-vars": "error",
+    "react/react-in-jsx-scope": "off"
   },
   "parserOptions": { 
     "sourceType": "module",
