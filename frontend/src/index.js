@@ -7,7 +7,7 @@ import configureStore from './store';
 import { createBrowserHistory } from 'history'
 
 // React Router
-import { Router, Route } from 'react-router'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 // React Redux
 import { Provider } from 'react-redux'
@@ -24,11 +24,10 @@ ReactDOM.render(
   <StrictMode>
     <Provider store={store}>
       <Router history={browserHistory}>
-        <Route path="/" component={App}>
-          <Route path="/login" component={Login} />
-          <Route path="/signup" component={Signup} />
-          <Route path="/widgets" component={Widgets} />
-        </Route>
+        <Route exact path="/" component={App} />
+        <Route path="/login" component={Login} />
+        <Route path="/signup" component={Signup} />
+        <Route path="/widgets" component={Widgets} />
       </Router>
     </Provider>
   </StrictMode>,
