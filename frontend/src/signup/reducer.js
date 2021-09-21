@@ -12,7 +12,8 @@ const signupReducer = (state=initialState, action) => {
     case SIGN_UP_REQUESTING:
       return {
         ...initialState,
-        requesting: true
+        requesting: true,
+        messages: [{ body: 'Signing up......', time: new Date() }]
       }
     
     default:
