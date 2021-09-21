@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { connect } from 'react-redux'
+import { reduxForm } from 'redux-form';
 import signupRequest from './actions'
 
 class Signup extends Component {
@@ -15,3 +16,10 @@ const mapStateToProps = state => {
 }
 
 const connectedComponent =  connect(mapStateToProps, { signupRequest })(Signup)
+
+// connect component to redux form after connecting it to redux
+const formed = reduxForm({
+  form: 'signup'
+})(connectedComponent)
+
+export default formed
