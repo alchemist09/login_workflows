@@ -1,11 +1,36 @@
 import { Component } from 'react';
 import { connect } from 'react-redux'
-import { reduxForm } from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
 import signupRequest from './actions'
 
 class Signup extends Component {
   render() {
-    return <div>Sign Up</div>
+    return (
+      <div className="signup">
+        <form className="widget-form">
+          <h1>Sign Up</h1>
+          <label htmlFor="email">Email</label>
+          <Field
+            name="email"
+            type="text"
+            id="email"
+            className="email"
+            label="Email"
+            component="input"
+          />
+          <label htmlFor="password">Passowrd</label>
+          <Field
+            name="passwoed"
+            type="password"
+            id="password"
+            className="password"
+            label="Password"
+            component="input"
+          />
+          <button action="submit">SIGN UP</button>
+        </form>
+      </div>
+    )
   }
 }
 
