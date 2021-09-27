@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types'
 import logo from './logo.svg';
 import './App.css';
+import SignUp from './signup'
 
-function App(props) {
+function App() {
   return (
     <div className="App">
       <header className="App-header">
@@ -10,7 +11,7 @@ function App(props) {
         <h2>Welcome to Widget Reactory</h2>
       </header>
       <section className="App-body">
-        {props.children}
+        <SignUp />
       </section>
     </div>
   );
