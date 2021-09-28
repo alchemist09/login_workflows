@@ -3,6 +3,9 @@ import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form';
 import signupRequest from './actions'
 import PropTypes from 'prop-types'
+import Errors from '../notifications/Errors'
+import Messages from '../notifications/Messages'
+import { Link } from 'react-router-dom';
 
 class Signup extends Component {
 
@@ -19,11 +22,15 @@ class Signup extends Component {
 
   submit = values => {
     this.props.signupRequest(values)
+    console.log(values)
   }
 
   render() {
     console.log(this.props)
-    const { handleSubmit } = this.props
+    const { 
+      handleSubmit, 
+      signup: { requesting, successful, messages, errors } 
+    } = this.props
 
     return (
       <div className="signup">
@@ -49,6 +56,18 @@ class Signup extends Component {
           />
           <button action="submit">SIGN UP</button>
         </form>
+
+        <div className="auth-messages">
+          {!requesting && !!errors.length && 
+            (<Errors message="Unable to sign up due to: " errors={errors} />)
+          }
+
+          {!requesting && !!messages.length && (<Messages  messages={messages} />)}
+
+          {!requesting && successful && (<Link to="/login">Click here to Login</Link>)}
+
+          {!requesting && !successful && (<Link to="/login">Already a member? Log in here </Link>)}
+        </div>
       </div>
     )
   }
