@@ -15,6 +15,7 @@
     "react/jsx-uses-vars": "error",
     "react/react-in-jsx-scope": "off"
   },
+  "parser": "babel-eslint",
   "parserOptions": { 
     "sourceType": "module",
     "ecmaVersion": 2020,
