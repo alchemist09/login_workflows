@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import logo from './logo.svg';
 import './App.css';
 import SignUp from './signup'
@@ -15,10 +14,6 @@ function App() {
       </section>
     </div>
   );
-}
-
-App.propTypes = {
-  children: PropTypes.node
 }
 
 export default App;
