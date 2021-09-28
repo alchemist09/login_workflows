@@ -2,9 +2,23 @@ import { Component } from 'react';
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form';
 import signupRequest from './actions'
+import PropTypes from 'prop-types'
 
 class Signup extends Component {
+
+  static propTypes = {
+    handleSubmit: PropTypes.func,
+    signupRequest: PropTypes.func,
+    signup: PropTypes.shape({
+      errors: PropTypes.array,
+      messages: PropTypes.array,
+      requesting: PropTypes.bool,
+      successful: PropTypes.bool
+    })
+  }
+
   render() {
+    console.log(this.props)
     return (
       <div className="signup">
         <form className="widget-form">
