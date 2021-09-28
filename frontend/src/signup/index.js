@@ -17,11 +17,17 @@ class Signup extends Component {
     })
   }
 
+  submit = values => {
+    this.props.signupRequest(values)
+  }
+
   render() {
     console.log(this.props)
+    const { handleSubmit } = this.props
+
     return (
       <div className="signup">
-        <form className="widget-form">
+        <form className="widget-form" onSubmit={handleSubmit(this.submit)}>
           <h1>Sign Up</h1>
           <label htmlFor="email">Email</label>
           <Field
