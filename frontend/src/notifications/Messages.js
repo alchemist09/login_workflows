@@ -12,3 +12,12 @@ const Messages = props => {
     </div>
   )
 }
+
+Messages.propTypes = {
+  messages: PropTypes.arrayOf(
+    PropTypes.shape({
+      body: PropTypes.string,
+      time: PropTypes.date
+    })
+  )
+}
