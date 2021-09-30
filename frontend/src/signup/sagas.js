@@ -1,7 +1,7 @@
 import { takeLatest, call, put } from 'redux-saga/effects'
 import { SIGN_UP_REQUESTING, SIGN_UP_SUCCESS, SIGN_UP_ERROR } from './constants'
 
-const signup_url = process.env.REACT_APP_API_URL
+const signup_url = `${process.env.REACT_APP_API_URL}/api/Clients`
 
 function signUpApi(email, password) {
   return fetch(signup_url, {
