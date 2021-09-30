@@ -16,9 +16,9 @@ function* signUpUser(action) {
   try {
     const { email, password } = action
     const result = yield call(signUpApi, email, password)
-    yield put({SIGN_UP_SUCCESS, result})
+    yield put({ type: SIGN_UP_SUCCESS, result})
   } catch (error) {
-    yield put({SIGN_UP_ERROR, error})
+    yield put({ type: SIGN_UP_ERROR, error})
   }
 }
 
