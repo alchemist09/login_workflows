@@ -1,4 +1,4 @@
-import { SIGN_UP_REQUESTING } from "./constants"
+import { SIGN_UP_REQUESTING, SIGN_UP_SUCCESS } from "./constants"
 
 const initialState = {
   requesting: false,
@@ -14,6 +14,13 @@ const signupReducer = (state=initialState, action) => {
         ...initialState,
         requesting: true,
         messages: [{ body: 'Signing up......', time: new Date() }]
+      }
+
+    case SIGN_UP_SUCCESS:
+      return {
+        ...initialState,
+        requesting: false,
+        messages: [{body: 'Welcome! You Signed Up Successful', time: new Date() }]
       }
     
     default:
