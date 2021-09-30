@@ -20,14 +20,20 @@ const signupReducer = (state=initialState, action) => {
       return {
         ...initialState,
         requesting: false,
-        messages: [{body: 'Welcome! You Signed Up Successful', time: new Date() }]
+        messages: [{body: `Successfully created account for ${action.result.email}`, time: new Date() }]
       }
 
     case SIGN_UP_ERROR:
       return {
-        ...initialState,
         requesting: false,
-        errors: [{ body: 'Sign up failed. Errors encountered during process', time: new Date() }]
+        successful: false,
+        messages: [],
+        errors: state.errors.concat([
+          {
+            body: action.error.toString(),
+            time: new Date()
+          }
+        ])
       }
     
     default:
