@@ -21,3 +21,5 @@ Messages.propTypes = {
     })
   )
 }
+
+export default Messages
