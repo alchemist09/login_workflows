@@ -1,6 +1,13 @@
+/* eslint-disable react/prop-types */
 import logo from './logo.svg';
 import './App.css';
-import SignUp from './signup'
+import { createBrowserHistory } from 'history'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import Login from './login'
+import Signup from './signup'
+import Widgets from './widgets'
+
+const browserHistory = createBrowserHistory()
 
 function App() {
   return (
@@ -10,7 +17,22 @@ function App() {
         <h2>Welcome to Widget Reactory</h2>
       </header>
       <section className="App-body">
-        <SignUp />
+        <Router history={browserHistory}>
+          <Switch>
+            <Route exact path="/">
+              <Signup />
+            </Route>
+            <Route path="/signup">
+              <Signup />
+            </Route>
+            <Route path="/login">
+              <Login />
+            </Route>
+            <Route path="/widgets">
+              <Widgets />
+            </Route>
+          </Switch>
+        </Router>
       </section>
     </div>
   );
