@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import logo from './logo.svg';
 import './App.css';
 import { createBrowserHistory } from 'history'

@@ -4,21 +4,9 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import configureStore from './store';
-// import { createBrowserHistory } from 'history'
-
-// React Router
-// import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-
-// React Redux
 import { Provider } from 'react-redux'
 
-// Components
-// import Login from './login'
-// import Signup from './signup'
-// import Widgets from './widgets'
-
 const store = configureStore()
-// const browserHistory = createBrowserHistory()
 
 ReactDOM.render(
   <StrictMode>
