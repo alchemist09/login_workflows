@@ -1,4 +1,4 @@
-// import { StrictMode } from 'react';
+import { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
@@ -9,9 +9,11 @@ import { Provider } from 'react-redux'
 const store = configureStore()
 
 ReactDOM.render(
+  <StrictMode>
     <Provider store={store}>
       <App />
-    </Provider>,
+    </Provider>
+  </StrictMode>,
   document.getElementById('root')
 );
 
