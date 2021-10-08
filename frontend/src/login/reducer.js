@@ -10,13 +10,31 @@ const initalState = {
 const login_reducer = (state=initalState, action) => {
   switch(action) {
     case LOGIN_REQUESTING:
-      break
+      return {
+        requesting: true,
+        successful: false,
+        messages: [{ body: 'Logging in...', time: new Date() }],
+        errors: []
+      }
     
     case LOGIN_SUCCESS:
-      break
+      return {
+        requesting: false,
+        successful: true,
+        messages: [],
+        errors: []
+      }
 
     case LOGIN_ERROR:
-      break
+      return {
+        requesting: false,
+        successful: false,
+        messages: [],
+        errors: state.errors.concat([{ 
+          body: action.error.toString(),
+          time: new Date()
+        }])
+      }
 
     default:
       return state
