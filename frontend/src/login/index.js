@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { Field } from 'redux-form'
+import { Field, reduxForm } from 'redux-form'
 import Messages from '../notifications/Messages'
 import Errors from '../notifications/Errors'
 import { Link } from 'react-router-dom'
@@ -10,6 +10,7 @@ import loginRequest from './actions'
 class Login extends Component {
 
   static propTypes = {
+    loginRequest: PropTypes.func,
     login: PropTypes.shape({
       requesting: PropTypes.bool,
       successful: PropTypes.bool,
@@ -69,4 +70,8 @@ const mapStateToProps = state => ({
 
 const connectedForm = connect(mapStateToProps, { loginRequest })(Login)
 
-export default Login
+const formed = reduxForm({
+  form: 'login'
+})(connectedForm)
+
+export default formed
