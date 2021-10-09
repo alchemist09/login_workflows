@@ -3,8 +3,19 @@ import { Field } from 'redux-form'
 import Messages from '../notifications/Messages'
 import Errors from '../notifications/Errors'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 class Login extends Component {
+
+  static propTypes = {
+    login: PropTypes.shape({
+      requesting: PropTypes.bool,
+      successful: PropTypes.bool,
+      messages: PropTypes.array,
+      errors: PropTypes.array
+    })
+  }
+
   render() {
     const { login: { requesting, successful, messages, errors } } = this.props
     return(
