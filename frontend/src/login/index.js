@@ -4,6 +4,8 @@ import Messages from '../notifications/Messages'
 import Errors from '../notifications/Errors'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import loginRequest from './actions'
 
 class Login extends Component {
 
@@ -60,5 +62,11 @@ class Login extends Component {
     )
   }
 }
+
+const mapStateToProps = state => ({
+  login: state.login
+})
+
+const connectedForm = connect(mapStateToProps, { loginRequest })(Login)
 
 export default Login
