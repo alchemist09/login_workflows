@@ -1,11 +1,15 @@
 import { Component } from 'react';
 import { Field } from 'redux-form'
+import Messages from '../notifications/Messages'
+import Errors from '../notifications/Errors'
+import { Link } from 'react-router-dom'
 
 class Login extends Component {
   render() {
+    const { login: { requesting, successful, messages, errors } } = this.props
     return(
       <div className="login">
-        <form>
+        <form className="widget-form">
           <h2>Login</h2>
           <label htmlFor="email">Email</label>
           <Field
@@ -25,6 +29,22 @@ class Login extends Component {
           />
           <button action="submit">LOGIN</button>
         </form>
+
+        <div className="auth-messages">
+          {!requesting && !!errors.length && (
+            <Errors message="Failure to login due to: " errors={errors} />
+          )}
+
+          {!requesting && !!messages.length && (
+            <Messages message={messages} />
+          )}
+
+          {requesting && <div>Logging in....</div>}
+
+          {!requesting && !successful && (
+            <Link to="/signup">Need to Signup? Click here</Link>
+          )}
+        </div>
       </div>
     )
   }
