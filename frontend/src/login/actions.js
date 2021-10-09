@@ -1,9 +1,9 @@
 import { LOGIN_REQUESTING } from './constants'
 
-const login_requesting = (email, passowrd) => ({
+const login_request = (email, passowrd) => ({
   type: LOGIN_REQUESTING,
   email,
   passowrd
 })
 
-export default login_requesting
+export default login_request
