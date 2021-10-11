@@ -11,6 +11,7 @@ class Login extends Component {
 
   static propTypes = {
     loginRequest: PropTypes.func,
+    handleSubmit: PropTypes.func,
     login: PropTypes.shape({
       requesting: PropTypes.bool,
       successful: PropTypes.bool,
@@ -19,11 +20,15 @@ class Login extends Component {
     })
   }
 
+  submit = values => {
+    this.form.loginRequest(values)
+  }
+
   render() {
-    const { login: { requesting, successful, messages, errors } } = this.props
+    const { handleSubmit, login: { requesting, successful, messages, errors } } = this.props
     return(
       <div className="login">
-        <form className="widget-form">
+        <form className="widget-form" onSubmit={handleSubmit(this.submit)}>
           <h2>Login</h2>
           <label htmlFor="email">Email</label>
           <Field
