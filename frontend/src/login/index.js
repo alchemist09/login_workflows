@@ -21,7 +21,7 @@ class Login extends Component {
   }
 
   submit = values => {
-    this.form.loginRequest(values)
+    this.props.loginRequest(values)
   }
 
   render() {
