@@ -1,17 +1,32 @@
-import { take, fork, cancel, call, put } from 'redux-saga/effects'
+import { take, fork, cancel, call, put, cancelled } from 'redux-saga/effects'
 
 import { LOGIN_REQUESTING, LOGIN_ERROR, LOGIN_SUCCESS } from './constants'
 import { CLIENT_UNSET } from '../client/constants'
+import { setClient } from '../client/actions'
+import browserHistory from '../history'
 
 function* logout() {}
 
 function* loginFlow(email, password) {
+  let token
   try {
-    const result = yield call(loginApi, email, password)
-    yield put({ type: LOGIN_SUCCESS, result })
+    token = yield call(loginApi, email, password)
+
+    yield put(setClient(token))
+
+    yield put({ type: LOGIN_SUCCESS })
+
+    localStorage.setItem('token', JSON.stringify(token))
+
+    browserHistory.push('/widgets')
   } catch (error) {
     yield put({ type: LOGIN_ERROR, error })
+  } finally {
+    if(yield cancelled()) {
+      browserHistory.push('/login')
+    }
   }
+  return token
 }
 
 function* loginWatcher() {
