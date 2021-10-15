@@ -12,7 +12,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <h2>Welcome to Widget Reactory</h2>
+        <h2>Welcome to Widget Factory</h2>
       </header>
       <section className="App-body">
         <Router history={browserHistory}>
