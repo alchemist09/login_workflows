@@ -47,7 +47,7 @@ class Signup extends Component {
           />
           <label htmlFor="password">Passowrd</label>
           <Field
-            name="passwoed"
+            name="password"
             type="password"
             id="password"
             className="password"
