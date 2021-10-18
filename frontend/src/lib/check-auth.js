@@ -29,7 +29,7 @@ const checkAuthorization = dispatch => {
   return false
 }
 
-const checkWidgetAuthorization = ({ dispatch, getState }) => {
+export const checkWidgetAuthorization = ({ dispatch, getState }) => {
   return (nextState, replace, next) => {
     const client = getState().client
     if(client && client.token) return next()
