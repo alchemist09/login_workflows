@@ -16,6 +16,8 @@ const checkAuthorization = dispatch => {
   const storedToken = localStorage.getItem('token')
   if(storedToken) {
     const token = JSON.parse(storedToken)
+    // compare the total seconds of the created time of the token
+    // vs time to live (ttl) seconds
     const createdDate = new Date(token.createdDate)
     const created = Math.round(createdDate.getTime() / 1000)
     const ttl = 1209600
