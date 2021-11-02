@@ -21,7 +21,10 @@ class Login extends Component {
   }
 
   submit = values => {
-    this.props.loginRequest(values)
+    console.log("============= login request starts here =================")
+    console.log("values from redux form: ", values)
+    const { email, password } = values
+    this.props.loginRequest(email, password)
   }
 
   render() {
@@ -36,6 +39,14 @@ class Login extends Component {
             type="text"
             id="email"
             className="email"
+            component="input"
+          />
+          <label htmlFor="username">Username</label>
+          <Field
+            name="username"
+            type="text"
+            id="username"
+            className="username"
             component="input"
           />
           <label htmlFor="password">Password</label>
