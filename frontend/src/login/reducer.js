@@ -8,7 +8,7 @@ const initalState = {
 }
 
 const login_reducer = (state=initalState, action) => {
-  switch(action) {
+  switch(action.type) {
     case LOGIN_REQUESTING:
       return {
         requesting: true,
