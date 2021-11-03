@@ -1,17 +1,5 @@
 import { setClient } from '../client/actions'
 
-export const checkIndexAuthorization = ({ dispatch }) => {
-  return (nextState, replace, next) => {
-    if(checkAuthorization(dispatch)) {
-      replace('widgets')
-      next()
-    }
-
-    replace('login')
-    next()
-  }
-}
-
 const checkAuthorization = dispatch => {
   const storedToken = localStorage.getItem('token')
   if(storedToken) {
@@ -34,6 +22,7 @@ const checkAuthorization = dispatch => {
 export const checkWidgetAuthorization = ({ dispatch, getState }) => {
   return (nextState, replace, next) => {
     const client = getState().client
+    console.log(client)
     if(client && client.token) return next()
     if(checkAuthorization(dispatch)) return next()
     replace('login')
