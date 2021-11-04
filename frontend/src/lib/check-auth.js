@@ -1,5 +1,6 @@
 import { setClient } from '../client/actions'
 import { Route, Redirect } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 export const ProtectedRoute = ({ component, ...routeProps }) => {
   return (
@@ -8,6 +9,10 @@ export const ProtectedRoute = ({ component, ...routeProps }) => {
       return (client && client.tokem) ? component : <Redirect to="/login" />
     }} {...routeProps} />
   )
+}
+
+ProtectedRoute.propTypes = {
+  component: PropTypes.element
 }
 
 
