@@ -1,11 +1,15 @@
 import { setClient } from '../client/actions'
-import { Route } from 'react-router-dom'
+import { Route, Redirect } from 'react-router-dom'
 
 export const ProtectedRoute = ({ component, ...routeProps }) => {
   return (
-    <Route {...routeProps} />
+    <Route render={({getState}) => {
+      const client = getState().client
+      return (client && client.tokem) ? component : <Redirect to="/login" />
+    }} {...routeProps} />
   )
 }
+
 
 const checkAuthorization = dispatch => {
   const storedToken = localStorage.getItem('token')
