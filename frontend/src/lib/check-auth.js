@@ -1,4 +1,11 @@
 import { setClient } from '../client/actions'
+import { Route } from 'react-router-dom'
+
+export const ProtectedRoute = ({ component, ...routeProps }) => {
+  return (
+    <Route {...routeProps} />
+  )
+}
 
 const checkAuthorization = dispatch => {
   const storedToken = localStorage.getItem('token')
