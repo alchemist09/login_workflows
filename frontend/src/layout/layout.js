@@ -18,7 +18,7 @@ const Layout = (props) => {
 }
 
 Layout.propTypes = {
-  children: PropTypes.elementType
+  children: PropTypes.node
 }
 
 
