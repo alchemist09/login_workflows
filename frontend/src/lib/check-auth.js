@@ -2,6 +2,25 @@ import { setClient } from '../client/actions'
 import { Route, Redirect } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
+export const isAuthenticated = store => {
+  const token = localStorage.getItem("token")
+  const store_token = store.getState().client.token
+
+  if(!token || !store_token) {
+    return false
+  }
+
+  if(token.id !== store_token.id) {
+    return false
+  }
+
+  if(token.id === store_token.id) {
+    return true
+  }
+
+  return false
+}
+
 export const ProtectedRoute = ({ auth, component, ...routeProps }) => {
   return (
     <Route {...routeProps} component={component}>
