@@ -1,7 +1,9 @@
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
 import browserHistory from './history'
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { ProtectedRoute } from './lib/check-auth'
+import { isAuthenticated } from './lib/check-auth'
 
 import './index.css';
 import reportWebVitals from './reportWebVitals';
@@ -14,8 +16,10 @@ import Login from './login'
 import Signup from './signup'
 import Widgets from './widgets'
 
-const logged_in = false
+// const logged_in = false
 const store = configureStore()
+
+export { store }
 
 ReactDOM.render(
   <StrictMode>
@@ -31,11 +35,9 @@ ReactDOM.render(
           <Route path="/login">
             <Layout><Login /></Layout>
           </Route>
-          <Route>
-            { logged_in ? <Layout><Widgets /></Layout> : <Redirect to={{
-              pathname: "/login"
-            }} />}
-          </Route>
+          <ProtectedRoute auth={isAuthenticated(store)} path="/widgets">
+            <Layout><Widgets /></Layout>
+          </ProtectedRoute>
         </Switch>
       </BrowserRouter>
     </Provider>
