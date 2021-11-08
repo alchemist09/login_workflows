@@ -16,10 +16,7 @@ import Login from './login'
 import Signup from './signup'
 import Widgets from './widgets'
 
-// const logged_in = false
 const store = configureStore()
-
-export { store }
 
 ReactDOM.render(
   <StrictMode>
