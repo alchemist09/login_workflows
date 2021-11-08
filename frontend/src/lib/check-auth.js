@@ -2,17 +2,17 @@ import { setClient } from '../client/actions'
 import { Route, Redirect } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
-export const ProtectedRoute = ({ component, ...routeProps }) => {
+export const ProtectedRoute = ({ auth, component, ...routeProps }) => {
   return (
-    <Route render={({getState}) => {
-      const client = getState().client
-      return (client && client.tokem) ? component : <Redirect to="/login" />
-    }} {...routeProps} />
+    <Route {...routeProps} component={component}>
+      { auth ? component : <Redirect to="/login" />}
+    </Route>
   )
 }
 
 ProtectedRoute.propTypes = {
-  component: PropTypes.element
+  auth: PropTypes.bool,
+  component: PropTypes.elementType
 }
 
 
