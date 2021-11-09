@@ -21,7 +21,6 @@ class Login extends Component {
   }
 
   submit = values => {
-    console.log("============= login request starts here =================")
     console.log("values from redux form: ", values)
     const { email, password } = values
     this.props.loginRequest(email, password)
