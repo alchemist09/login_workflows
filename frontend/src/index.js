@@ -1,6 +1,5 @@
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
-import browserHistory from './history'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { ProtectedRoute } from './lib/check-auth'
 import { isAuthenticated } from './lib/check-auth'
@@ -21,7 +20,7 @@ const store = configureStore()
 ReactDOM.render(
   <StrictMode>
     <Provider store={store}>
-      <BrowserRouter history={browserHistory}>
+      <BrowserRouter>
         <Switch>
           <Route exact path="/">
             <App />
