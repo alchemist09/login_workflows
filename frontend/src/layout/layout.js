@@ -10,7 +10,6 @@ const Layout = (props) => {
         <h2>Welcome to Widget Factory</h2>
       </header>
       <section className="App-body">
-        <p>This is the general theme of the site</p>
         {props.children}
       </section>
     </div>
