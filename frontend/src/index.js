@@ -1,8 +1,10 @@
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
+import { ConnectedRouter } from 'connected-react-router'
 import { ProtectedRoute } from './lib/check-auth'
 import { isAuthenticated } from './lib/check-auth'
+import history from './history';
 
 import './index.css';
 import reportWebVitals from './reportWebVitals';
@@ -20,7 +22,7 @@ const store = configureStore()
 ReactDOM.render(
   <StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
+      <ConnectedRouter history={history}>
         <Switch>
           <Route exact path="/">
             <App />
@@ -35,7 +37,7 @@ ReactDOM.render(
             <Layout><Widgets /></Layout>
           </ProtectedRoute>
         </Switch>
-      </BrowserRouter>
+      </ConnectedRouter>
     </Provider>
   </StrictMode>,
   document.getElementById('root')
