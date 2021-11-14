@@ -3,7 +3,7 @@ import { Route, Redirect } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 export const isAuthenticated = store => {
-  const token = localStorage.getItem("token")
+  let token = localStorage.getItem("token")
   const store_token = store.getState().client.token
 
   if(!token || !store_token) {
@@ -35,10 +35,8 @@ ProtectedRoute.propTypes = {
 }
 
 
-export const checkAuthorization = dispatch => {
-  const storedToken = localStorage.getItem('token')
-  if(storedToken) {
-    const token = JSON.parse(storedToken)
+export const tokenHasExpired = token => {
+  if(token) {
     // compare the total seconds of the created time of the token
     // vs time to live (ttl) seconds
     const createdDate = new Date(token.createdDate)
@@ -46,10 +44,8 @@ export const checkAuthorization = dispatch => {
     const ttl = 1209600
     const expiry = created + ttl
 
-    if(created > expiry) return false
-
-    dispatch(setClient(token))
-    return true
+    if(created > expiry) return true
+    return false
   }
   return false
 }
