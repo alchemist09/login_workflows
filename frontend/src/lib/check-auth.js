@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 
 export const isAuthenticated = store => {
   let token = localStorage.getItem("token")
+  token = JSON.parse(token)
   const store_token = store.getState().client.token
 
   if(!token || !store_token) {
@@ -11,6 +12,10 @@ export const isAuthenticated = store => {
   }
 
   if(token.id !== store_token.id) {
+    return false
+  }
+
+  if(tokenHasExpired(token)) {
     return false
   }
 
