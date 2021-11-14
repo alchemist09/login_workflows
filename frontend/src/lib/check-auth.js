@@ -53,14 +53,3 @@ const checkAuthorization = dispatch => {
   }
   return false
 }
-
-export const checkWidgetAuthorization = ({ dispatch, getState }) => {
-  return (nextState, replace, next) => {
-    const client = getState().client
-    console.log(client)
-    if(client && client.token) return next()
-    if(checkAuthorization(dispatch)) return next()
-    replace('login')
-    return next()
-  }
-}
