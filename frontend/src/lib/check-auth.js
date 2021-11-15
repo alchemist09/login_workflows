@@ -1,4 +1,5 @@
 import { Route, Redirect } from 'react-router-dom'
+import { store } from '../index'
 import PropTypes from 'prop-types'
 
 export const isAuthenticated = store => {
@@ -25,17 +26,22 @@ export const isAuthenticated = store => {
   return false
 }
 
-export const ProtectedRoute = ({ auth, component, ...routeProps }) => {
+export const ProtectedRoute = ({ children, ...routeProps }) => {
   return (
-    <Route {...routeProps} component={component}>
-      { auth ? component : <Redirect to="/login" />}
-    </Route>
+    <Route {...routeProps} render={ props => {
+      return isAuthenticated(store) ? children 
+      : <Redirect to={{
+        pathname: '/login',
+        state: { from: props.location }
+      }} />
+
+    } } />
   )
 }
 
 ProtectedRoute.propTypes = {
-  auth: PropTypes.bool,
-  component: PropTypes.elementType
+  children: PropTypes.elementType,
+  location: PropTypes.string
 }
 
 
