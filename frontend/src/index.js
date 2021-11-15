@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import { Route, Switch } from 'react-router-dom'
 import { ConnectedRouter } from 'connected-react-router'
 import { ProtectedRoute } from './lib/check-auth'
-// import { isAuthenticated } from './lib/check-auth'
 import history from './history';
 
 import './index.css';
