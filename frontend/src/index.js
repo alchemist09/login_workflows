@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Route, Switch } from 'react-router-dom'
 import { ConnectedRouter } from 'connected-react-router'
 import { ProtectedRoute } from './lib/check-auth'
-import { isAuthenticated } from './lib/check-auth'
+// import { isAuthenticated } from './lib/check-auth'
 import history from './history';
 
 import './index.css';
@@ -19,6 +19,8 @@ import Widgets from './widgets'
 
 const store = configureStore()
 
+export { store }
+
 ReactDOM.render(
   <StrictMode>
     <Provider store={store}>
@@ -33,7 +35,7 @@ ReactDOM.render(
           <Route path="/login">
             <Layout><Login /></Layout>
           </Route>
-          <ProtectedRoute auth={isAuthenticated(store)} path="/widgets">
+          <ProtectedRoute path="/widgets">
             <Layout><Widgets /></Layout>
           </ProtectedRoute>
         </Switch>
