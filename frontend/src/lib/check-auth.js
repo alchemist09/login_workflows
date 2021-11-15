@@ -1,11 +1,12 @@
 import { Route, Redirect } from 'react-router-dom'
-import { store } from '../index'
+// import { store } from '../index'
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
-export const isAuthenticated = store => {
+export const isAuthenticated = authToken => {
   let token = localStorage.getItem("token")
   token = JSON.parse(token)
-  const store_token = store.getState().client.token
+  const store_token = authToken
 
   if(!token || !store_token) {
     return false
@@ -26,10 +27,10 @@ export const isAuthenticated = store => {
   return false
 }
 
-export const ProtectedRoute = ({ children, ...routeProps }) => {
+const PrivateRoute = ({ children, token, ...routeProps }) => {
   return (
     <Route {...routeProps} render={ ({ location }) => {
-      return isAuthenticated(store) ? children 
+      return isAuthenticated(token) ? children 
       : <Redirect to={{
         pathname: '/login',
         state: { from: location }
@@ -39,9 +40,16 @@ export const ProtectedRoute = ({ children, ...routeProps }) => {
   )
 }
 
-ProtectedRoute.propTypes = {
-  children: PropTypes.node
+PrivateRoute.propTypes = {
+  children: PropTypes.node,
+  token: PropTypes.object
 }
+
+const mapStateToProps = state => ({
+  token: state.token
+})
+
+export const ProtectedRoute = connect(mapStateToProps)(PrivateRoute)
 
 
 export const tokenHasExpired = token => {
