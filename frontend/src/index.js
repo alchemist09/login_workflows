@@ -18,8 +18,6 @@ import Widgets from './widgets'
 
 const store = configureStore()
 
-export { store }
-
 ReactDOM.render(
   <StrictMode>
     <Provider store={store}>

@@ -1,5 +1,4 @@
 import { Route, Redirect } from 'react-router-dom'
-// import { store } from '../index'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
