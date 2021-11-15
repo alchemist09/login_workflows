@@ -28,11 +28,11 @@ export const isAuthenticated = store => {
 
 export const ProtectedRoute = ({ children, ...routeProps }) => {
   return (
-    <Route {...routeProps} render={ props => {
+    <Route {...routeProps} render={ ({ location }) => {
       return isAuthenticated(store) ? children 
       : <Redirect to={{
         pathname: '/login',
-        state: { from: props.location }
+        state: { from: location }
       }} />
 
     } } />
@@ -40,8 +40,7 @@ export const ProtectedRoute = ({ children, ...routeProps }) => {
 }
 
 ProtectedRoute.propTypes = {
-  children: PropTypes.elementType,
-  location: PropTypes.string
+  children: PropTypes.node
 }
 
 
