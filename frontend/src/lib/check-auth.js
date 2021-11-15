@@ -42,7 +42,12 @@ const PrivateRoute = ({ children, token, ...routeProps }) => {
 
 PrivateRoute.propTypes = {
   children: PropTypes.node,
-  token: PropTypes.object
+  token: PropTypes.shape({
+    id: PropTypes.string,
+    ttl: PropTypes.number,
+    created: PropTypes.string,
+    userId: PropTypes.number
+  })
 }
 
 const mapStateToProps = state => ({
