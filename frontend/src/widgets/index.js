@@ -1,4 +1,6 @@
 import { Component } from 'react';
+import { connect } from 'react-redux'
+import { widgetCreate } from './actions'
 
 class Widgets extends Component {
   render() {
@@ -10,4 +12,9 @@ class Widgets extends Component {
   }
 }
 
-export default Widgets
+const mapStateToProps = state => ({
+  client: state.client,
+  widgets: state.widgets
+})
+
+export default connect(mapStateToProps, { widgetCreate })(Widgets)
