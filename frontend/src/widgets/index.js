@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { connect } from 'react-redux'
+import { reduxForm } from 'redux-form'
 import { widgetCreate } from './actions'
 
 class Widgets extends Component {
@@ -17,4 +18,9 @@ const mapStateToProps = state => ({
   widgets: state.widgets
 })
 
-export default connect(mapStateToProps, { widgetCreate })(Widgets)
+const connected = connect(mapStateToProps, { widgetCreate })(Widgets)
+const formed = reduxForm({
+  form: 'widgets'
+})(connected)
+
+export default formed
