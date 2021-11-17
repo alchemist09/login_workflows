@@ -3,6 +3,9 @@ import { connect } from 'react-redux'
 import { reduxForm } from 'redux-form'
 import { widgetCreate } from './actions'
 
+
+const nameRequired = value => (value ? undefined : 'Name required')
+
 class Widgets extends Component {
   render() {
     return(
