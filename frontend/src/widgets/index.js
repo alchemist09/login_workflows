@@ -2,6 +2,8 @@ import { Component } from 'react';
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 import { widgetCreate } from './actions'
+import Errors from '../notifications/Errors'
+import Messages from '../notifications/Messages';
 
 
 const nameRequired = value => (value ? undefined : 'Name required')
@@ -54,6 +56,10 @@ class Widgets extends Component {
             />
             <button disabled={invalid} action="submit">CREATE</button>
           </form>
+          <hr />
+          {requesting && <span>Creating widget....</span>}
+          {!requesting && !!errors.length && <Errors message="Failure to create widget due to: " errors={errors} />}
+          {!requesting && successful && !!messages.length && <Messages messages={messages} />}
         </div>
       </div>
     )
