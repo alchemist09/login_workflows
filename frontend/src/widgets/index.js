@@ -22,6 +22,21 @@ class Widgets extends Component {
     })
   }
 
+  renderNameInput = ({ input, type, meta: { error, touched }}) => (
+    <div>
+      <input {...input} type={type} />
+      {touched && error && (
+        <div style={{
+          color: '#cc7a6f',
+          margin: '-10px 0 15px',
+          fontSize: '0.7rem'
+        }}>
+          {error}
+        </div>
+      )}
+    </div>
+  )
+
   render() {
     // the 'invalid' prop is injected by Redux Form that states whether 
     // or not the form is valid/invalid. This is only relevant when we are
