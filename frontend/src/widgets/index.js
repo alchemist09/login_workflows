@@ -37,6 +37,12 @@ class Widgets extends Component {
     </div>
   )
 
+  submit = widget => {
+    const { client, widgetCreate, reset } = this.props
+    widgetCreate(client, widget)
+    reset()
+  }
+
   render() {
     // the 'invalid' prop is injected by Redux Form that states whether 
     // or not the form is valid/invalid. This is only relevant when we are
