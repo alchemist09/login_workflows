@@ -11,15 +11,26 @@ const nameRequired = value => (value ? undefined : 'Name required')
 
 class Widgets extends Component {
   static propTypes = {
-    handleSubmit: PropTypes.func,
-    invalid: PropTypes.bool,
+    handleSubmit: PropTypes.func.isRequired,
+    invalid: PropTypes.bool.isRequired,
     widgets: PropTypes.shape({
       list: PropTypes.array,
       requesting: PropTypes.bool,
       successful: PropTypes.bool,
       messages: PropTypes.array,
       errors: PropTypes.array
-    })
+    }),
+    client: PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      tokem: PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        ttl: PropTypes.number.isRequired,
+        created: PropTypes.string.isRequired,
+        userId: PropTypes.number.isRequired
+      }).isRequired
+    }).isRequired,
+    reset: PropTypes.func.isRequired,
+    widgetCreate: PropTypes.func.isRequired
   }
 
   renderNameInput = ({ input, type, meta: { error, touched }}) => (
