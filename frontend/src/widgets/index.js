@@ -41,7 +41,7 @@ class Widgets extends Component {
       <div className="widgets">
         <h2>CREATE THE WIDGET</h2>
         <div className="widgets-form">
-          <form>
+          <form onSubmit={handleSubmit(this.submit)}>
             <label htmlFor="name">Name</label>
             <Field
               name="name"
@@ -70,9 +70,11 @@ class Widgets extends Component {
             <button disabled={invalid} action="submit">CREATE</button>
           </form>
           <hr />
-          {requesting && <span>Creating widget....</span>}
-          {!requesting && !!errors.length && <Errors message="Failure to create widget due to: " errors={errors} />}
-          {!requesting && successful && !!messages.length && <Messages messages={messages} />}
+          <div className="widget-messages">
+            {requesting && <span>Creating widget....</span>}
+            {!requesting && !!errors.length && <Errors message="Failure to create widget due to: " errors={errors} />}
+            {!requesting && successful && !!messages.length && <Messages messages={messages} />}
+          </div>
         </div>
       </div>
     )
