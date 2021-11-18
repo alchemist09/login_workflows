@@ -8,6 +8,20 @@ const nameRequired = value => (value ? undefined : 'Name required')
 
 class Widgets extends Component {
   render() {
+    // the 'invalid' prop is injected by Redux Form that states whether 
+    // or not the form is valid/invalid. This is only relevant when we are
+    // using the concept of validators on our form
+    const {
+      handleSubmit,
+      invalid,
+      widgets: {
+        list,
+        requesting,
+        successful,
+        messages,
+        errors
+      }
+    } = this.props
     return(
       <div className="widgets">
         <h2>CREATE THE WIDGET</h2>
