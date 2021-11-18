@@ -4,11 +4,24 @@ import { Field, reduxForm } from 'redux-form'
 import { widgetCreate } from './actions'
 import Errors from '../notifications/Errors'
 import Messages from '../notifications/Messages';
+import PropTypes from 'prop-types'
 
 
 const nameRequired = value => (value ? undefined : 'Name required')
 
 class Widgets extends Component {
+  static propTypes = {
+    handleSubmit: PropTypes.func,
+    invalid: PropTypes.bool,
+    widgets: PropTypes.shape({
+      list: PropTypes.array,
+      requesting: PropTypes.bool,
+      successful: PropTypes.bool,
+      messages: PropTypes.array,
+      errors: PropTypes.array
+    })
+  }
+
   render() {
     // the 'invalid' prop is injected by Redux Form that states whether 
     // or not the form is valid/invalid. This is only relevant when we are
