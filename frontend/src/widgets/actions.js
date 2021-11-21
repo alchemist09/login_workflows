@@ -28,9 +28,9 @@ export const widgetRequest = client => ({
   client
 })
 
-export const widgetRequestSuccessful = widget => ({
+export const widgetRequestSuccessful = widgets => ({
   type: WIDGET_REQUESTING_SUCCESS,
-  widget
+  widgets
 })
 
 export const widgetRequestError = error => ({
