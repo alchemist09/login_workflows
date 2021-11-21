@@ -1,4 +1,11 @@
-import { WIDGET_CREATING, WIDGET_CREATE_SUCCESS, WIDGET_CREATE_ERROR} from "./constants"
+import { 
+  WIDGET_CREATING,
+  WIDGET_CREATE_SUCCESS,
+  WIDGET_CREATE_ERROR,
+  WIDGET_REQUESTING,
+  WIDGET_REQUESTING_SUCCESS,
+  WIDGET_REQUESTING_ERROR
+} from "./constants"
 
 const initialState = {
   list: [],
@@ -38,6 +45,47 @@ const widgetReducer = (state=initialState, action) => {
     case WIDGET_CREATE_ERROR:
       return {
         ...state,
+        requesting: false,
+        successful: false,
+        messages: [],
+        errors: state.errors.concat([
+          {
+            body: action.error.toString(),
+            time: new Date()
+          }
+        ])
+      }
+
+    case WIDGET_REQUESTING:
+      return {
+        ...state,
+        requesting: false,
+        successful: true,
+        messages: [
+          {
+            body: 'Fetching widgets.....!',
+            time: new Date()
+          }
+        ],
+        errors: []
+      }
+
+    case WIDGET_REQUESTING_SUCCESS:
+      return {
+        list: action.widgets,
+        requesting: false,
+        successful: true,
+        messages: [
+          {
+            body: 'Widgets awesomely fetched....!',
+            time: new Date()
+          }
+        ],
+        errors: []
+      }
+
+    case WIDGET_REQUESTING_ERROR:
+      return {
         requesting: false,
         successful: false,
         messages: [],
