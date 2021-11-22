@@ -62,7 +62,6 @@ class Widgets extends Component {
       handleSubmit,
       invalid,
       widgets: {
-        list,
         requesting,
         successful,
         messages,
