@@ -19,7 +19,7 @@ class Widgets extends Component {
       successful: PropTypes.bool,
       messages: PropTypes.array,
       errors: PropTypes.array
-    }),
+    }).isRequired,
     client: PropTypes.shape({
       id: PropTypes.number.isRequired,
       tokem: PropTypes.shape({
