@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
-import { widgetCreate } from './actions'
+import { widgetCreate, widgetRequest } from './actions'
 import Errors from '../notifications/Errors'
 import Messages from '../notifications/Messages';
 import PropTypes from 'prop-types'
@@ -31,6 +31,14 @@ class Widgets extends Component {
     }).isRequired,
     reset: PropTypes.func.isRequired,
     widgetCreate: PropTypes.func.isRequired
+  }
+
+  fetchWidgets = () => {
+    const { client, widgetRequest } = this.props
+    if(client && client.tokem) {
+      return widgetRequest(client)
+    }
+    return false
   }
 
   renderNameInput = ({ input, type, meta: { error, touched }}) => (
