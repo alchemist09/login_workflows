@@ -30,7 +30,8 @@ class Widgets extends Component {
       }).isRequired
     }).isRequired,
     reset: PropTypes.func.isRequired,
-    widgetCreate: PropTypes.func.isRequired
+    widgetCreate: PropTypes.func.isRequired,
+    widgetRequest: PropTypes.func.isRequired
   }
 
   fetchWidgets = () => {
