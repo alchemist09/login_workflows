@@ -132,6 +132,7 @@ class Widgets extends Component {
               }
             </tbody>
           </table>
+          <button onClick={this.fetchWidgets}>Refetch Widgets!</button>
         </div>
       </div>
     )
