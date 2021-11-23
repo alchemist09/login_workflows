@@ -22,7 +22,7 @@ class Widgets extends Component {
     }).isRequired,
     client: PropTypes.shape({
       id: PropTypes.number.isRequired,
-      tokem: PropTypes.shape({
+      token: PropTypes.shape({
         id: PropTypes.string.isRequired,
         ttl: PropTypes.number.isRequired,
         created: PropTypes.string.isRequired,
@@ -36,7 +36,7 @@ class Widgets extends Component {
 
   fetchWidgets = () => {
     const { client, widgetRequest } = this.props
-    if(client && client.tokem) {
+    if(client && client.token) {
       return widgetRequest(client)
     }
     return false
