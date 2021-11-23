@@ -153,7 +153,7 @@ const mapStateToProps = state => ({
   widgets: state.widgets
 })
 
-const connected = connect(mapStateToProps, { widgetCreate })(Widgets)
+const connected = connect(mapStateToProps, { widgetCreate, widgetRequest })(Widgets)
 const formed = reduxForm({
   form: 'widgets'
 })(connected)
