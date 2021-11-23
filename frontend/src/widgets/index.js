@@ -62,13 +62,14 @@ class Widgets extends Component {
       handleSubmit,
       invalid,
       widgets: {
+        list,
         requesting,
         successful,
         messages,
         errors
       }
     } = this.props
-    return(
+    return (
       <div className="widgets">
         <h2>CREATE THE WIDGET</h2>
         <div className="widgets-form">
@@ -106,6 +107,31 @@ class Widgets extends Component {
             {!requesting && !!errors.length && <Errors message="Failure to create widget due to: " errors={errors} />}
             {!requesting && successful && !!messages.length && <Messages messages={messages} />}
           </div>
+        </div>
+
+        <div className="widget-list">
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Size</th>
+              </tr>
+            </thead>
+            <tbody>
+              {
+                list && !!list.length && list.map(
+                  widget => (
+                    <tr key={widget.id}>
+                      <td>{widget.name}</td>
+                      <td>{widget.description}</td>
+                      <td>{widget.size}</td>
+                    </tr>
+                  )
+                )
+              }
+            </tbody>
+          </table>
         </div>
       </div>
     )
