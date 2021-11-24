@@ -1,7 +1,7 @@
 import { takeLatest, call, put } from 'redux-saga/effects'
 import { handleApiErrors } from '../lib/api-errors'
 import { widgetCreateError, widgetCreateSuccess } from './actions'
-import { WIDGET_CREATING} from './constants'
+import { WIDGET_CREATING, WIDGET_REQUESTING } from './constants'
 
 const widget_url = `${process.env.REACT_APP_API_URL}/api/Clients`
 
@@ -39,6 +39,7 @@ function* widgetCreateFlow(action) {
 
 function* widgetWatcher() {
   yield takeLatest(WIDGET_CREATING, widgetCreateFlow)
+  yield takeLatest(WIDGET_REQUESTING, widgetRequestFlow)
 }
 
 export default widgetWatcher
