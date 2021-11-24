@@ -1,6 +1,11 @@
 import { takeLatest, call, put } from 'redux-saga/effects'
 import { handleApiErrors } from '../lib/api-errors'
-import { widgetCreateError, widgetCreateSuccess } from './actions'
+import { 
+  widgetCreateError, 
+  widgetCreateSuccess,
+  widgetRequestSuccessful,
+  widgetRequestError
+} from './actions'
 import { WIDGET_CREATING, WIDGET_REQUESTING } from './constants'
 
 const widget_url = `${process.env.REACT_APP_API_URL}/api/Clients`
@@ -34,6 +39,16 @@ function* widgetCreateFlow(action) {
     yield put(widgetCreateSuccess(createdWidget))
   } catch (error) {
     yield put(widgetCreateError(error))
+  }
+}
+
+function* widgetRequestFlow(action) {
+  try {
+    const { client } = action
+    const widgets = yield call(widgetRequestApi, client)
+    yield put(widgetRequestSuccessful(widgets))
+  } catch (error) {
+    yield put(widgetRequestError(error))
   }
 }
 
