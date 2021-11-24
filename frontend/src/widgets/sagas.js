@@ -4,6 +4,15 @@ import { widgetCreateError, widgetCreateSuccess } from './actions'
 import { WIDGET_CREATING} from './constants'
 
 const widget_url = `${process.env.REACT_APP_API_URL}/api/Clients`
+
+const handleRequest = request => {
+  return request
+    .then(handleApiErrors)
+    .then(res => res.json())
+    .then(json => json)
+    .catch(error => { throw error })
+}
+
 const widgetCreateApi = (client, widget) => {
   const url = `${widget_url}/${client.id}/widgets`
   return fetch(url, {
