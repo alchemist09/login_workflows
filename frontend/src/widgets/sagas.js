@@ -15,7 +15,7 @@ const handleRequest = request => {
 
 const widgetCreateApi = (client, widget) => {
   const url = `${widget_url}/${client.id}/widgets`
-  return fetch(url, {
+  const response = fetch(url, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -23,10 +23,8 @@ const widgetCreateApi = (client, widget) => {
     },
     body: JSON.stringify(widget)
   })
-  .then(handleApiErrors)
-  .then(res => res.json())
-  .then(json => json)
-  .catch(error => {throw error})
+  
+  return handleRequest(response)
 }
 
 function* widgetCreateFlow(action) {
