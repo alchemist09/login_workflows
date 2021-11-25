@@ -42,6 +42,19 @@ function* widgetCreateFlow(action) {
   }
 }
 
+const widgetRequestApi = client => {
+  const url = `${widget_url}/${client.id}/widgets`
+  const response = fetch(url, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: client.token.id || undefined
+    }
+  })
+  
+  return handleRequest(response)
+}
+
 function* widgetRequestFlow(action) {
   try {
     const { client } = action
